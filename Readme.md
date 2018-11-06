@@ -5,6 +5,7 @@
 - построен на проксирующем dns сервере
 [unbound](https://nlnetlabs.nl/projects/unbound/about/).
 - запросы отправляются на [cloudflare-dns.com](https://cloudflare-dns.com)
+- подробнее на [cloudflare.com](https://developers.cloudflare.com/1.1.1.1/dns-over-tls/)
 ### Использование
 - клонировать репозиторий
 ```
