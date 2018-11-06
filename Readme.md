@@ -6,6 +6,7 @@
 [unbound](https://nlnetlabs.nl/projects/unbound/about/).
 - запросы отправляются на [cloudflare-dns.com](https://cloudflare-dns.com)
 - подробнее на [cloudflare.com](https://developers.cloudflare.com/1.1.1.1/dns-over-tls/)
+- размер образа ~ 16 mb.
 ### Использование
 - клонировать репозиторий
 ```
