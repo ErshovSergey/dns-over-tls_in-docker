@@ -1,0 +1,28 @@
+version: '2'
+services:
+  unbound-data:
+    image: busybox
+    container_name: "${DoT_NAME}_unbound-data"
+    volumes:
+      - "${DoT_PATH}/unbound_data:/etc/unbound/unbound.d/"
+
+  unbound:
+    image: unbound-bin
+    volumes_from:
+      - unbound-data
+    restart: always
+    container_name: "${DoT_NAME}_unbound"
+    build:
+      context: unbound
+      dockerfile: Dockerfile
+    hostname: unbound
+    ports:
+      -  "${IP_PORT}:53/udp"
+      -  "${IP_PORT}:53"
+
+#    env_file:
+#      - ./mysql.env
+    depends_on:
+      - unbound-data
+#    logging:
+#      driver: none
