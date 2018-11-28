@@ -2,10 +2,9 @@
 
 ## DNS over TLS 
 Образ docker с dns сервером для сокрытия содержимого dns запросов:
-- построен на проксирующем dns сервере
-[unbound](https://nlnetlabs.nl/projects/unbound/about/).
-- запросы отправляются на [cloudflare-dns.com](https://cloudflare-dns.com)
-- подробнее на [cloudflare.com](https://developers.cloudflare.com/1.1.1.1/dns-over-tls/)
+- используется проксирующий dns сервер [unbound](https://nlnetlabs.nl/projects/unbound/about/).
+- запросы отправляются на сервера определенные в [unbound/unbound.conf](unbound/unbound.conf)
+- подробнее можно почитать на [cloudflare.com](https://developers.cloudflare.com/1.1.1.1/dns-over-tls/)
 - размер образа ~ 16 mb.
 ### Использование
 - клонировать репозиторий
@@ -21,9 +20,12 @@ cp .env-default .env
 ```
 nano .env
 ```
+- закоментировать/раскомментировать/добавить свой dns сервер в файле [unbound/unbound.conf](unbound/unbound.conf)
+```
+nano unbound/unbound.conf
+```
 - собрать образ и запустить
 ```
-docker-compose up --build -d
 docker-compose up --build -d --remove-orphans --force-recreate
 ```
 ### Полезные команды
@@ -35,7 +37,8 @@ docker-compose down
 Для переадресации некоторых зон dns на определенные серверы необходимо создать конфигурационный файл (например add.conf) и поместить его в *$DoT_PATH*
  (путь определяется в .env). 
  
- Например для зоны *.local* файл будет следующего содержания
+ Например за зону *.local* будет отвечать сервер x.xx.y.yy@53  
+ Файл *add.conf* будет следующего содержания
 ```console
 private-domain: "local."
 #если ip адреса из "серых" - необходима следующая строка
