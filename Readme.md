@@ -24,6 +24,7 @@ nano .env
 - собрать образ и запустить
 ```
 docker-compose up --build -d
+docker-compose up --build -d --remove-orphans --force-recreate
 ```
 ### Полезные команды
 Остановить и удалить контейнер
