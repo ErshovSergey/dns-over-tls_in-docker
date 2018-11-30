@@ -11,5 +11,4 @@ RUN apk add --update --no-cache unbound ca-certificates openssl bash  \
 
 COPY unbound.conf /etc/unbound/unbound.conf
 
-#ENTRYPOINT ["/usr/sbin/unbound", "-dd"]
 ENTRYPOINT ["/usr/sbin/unbound", "-d"]
